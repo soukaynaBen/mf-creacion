@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
+import Header from "@/components/ui/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,11 +13,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "MF Creacion",
-  description: "Choose from an array of embroidered t-shirts, hoodies & more online at MFCreacion or upload your own images",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header/>
         {children}
       </body>
     </html>
