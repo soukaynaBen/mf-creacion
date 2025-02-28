@@ -12,6 +12,7 @@ const getProductBySlug = async (slug : string )=>{
         const product = await sanityFetch({query: PRODUCT_BY_ID_QUERY, params: { slug }})
         return  product.data || null
     } catch (error) {
+        console.error("Error fetching products by id:"+error)
 
         return null
     }
