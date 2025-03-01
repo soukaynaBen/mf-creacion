@@ -1,4 +1,6 @@
+import AddToBasketButton from '@/components/AddToBasketButton'
 import ImageZoom from '@/components/ImageZoom'
+import { Button } from '@/components/ui/button'
 import getProductBySlug from '@/sanity/lib/products/getProductBySlug'
 import { PortableText } from 'next-sanity'
 import { notFound } from 'next/navigation'
@@ -22,7 +24,7 @@ async function ProductPage({params} : { params: Promise< { slug : string }>}) {
             <ImageZoom name={product.name} image={product.image} isOutOfStock={isOutOfStock}/>
              
             </div>
-            <div className='flex felx-col justify-between'>
+            <div className='flex flex-col justify-between'>
                 <div>
                     <h1 className='text-3xl font-bold mb-4 '>
                         {product.name}
@@ -33,6 +35,10 @@ async function ProductPage({params} : { params: Promise< { slug : string }>}) {
                     <div className='prose max-w-none mb-6 '>
                         {Array.isArray(product.description) && (<PortableText value={product.description} />)}
                     </div>
+                </div>
+
+                <div className='mt-6'>
+                    <AddToBasketButton product={product} disabled={isOutOfStock} />
                 </div>
             </div>
         </div>
