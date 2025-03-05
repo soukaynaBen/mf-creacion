@@ -23,9 +23,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (<ClerkProvider dynamic>
-        <html lang="en">
+        <html lang="en" >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         {(await draftMode()).isEnabled && (
           <>
