@@ -34,7 +34,7 @@ function BasketPage() {
         </div>)
       }
     const handleCheckout = async ()=>{
-        if (!isSignedIn) {
+        if (!isSignedIn || !user) {
             return;
         }
         setIsLoading(true)
@@ -54,7 +54,7 @@ function BasketPage() {
         } catch (error) {
             console.error("Error creating checkout session:"+error)
         } finally {
-            setIsLoading(true)
+            setIsLoading(false)
         }
     }
 

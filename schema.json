@@ -460,13 +460,6 @@
         },
         "optional": true
       },
-      "stripeCustomId": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
       "clerkUserId": {
         "type": "objectAttribute",
         "value": {

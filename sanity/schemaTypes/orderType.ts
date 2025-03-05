@@ -20,12 +20,6 @@ export const orderType = defineType({
             type: "string"
         }),
         defineField({
-            name: "stripeCustomId",
-            title: "Stripe Custom ID",
-            type: "string",
-            validation: (Rule) => Rule.required()
-        }),
-        defineField({
             name: "clerkUserId",
             title: "Store User ID",
             type: "string",
