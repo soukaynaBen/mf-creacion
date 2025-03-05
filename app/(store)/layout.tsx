@@ -3,6 +3,9 @@ import "../globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
 import Header from "@/components/ui/Header";
 import { SanityLive } from "@/sanity/lib/live";
+import { draftMode } from "next/headers";
+import DisableDraftMode from "@/components/DisableDraftMode";
+import { VisualEditing } from "next-sanity";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -24,6 +27,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {(await draftMode()).isEnabled && (
+          <>
+            <DisableDraftMode />
+            <VisualEditing />
+          </>
+        )}
         <main>
           <Header/>
           {children}

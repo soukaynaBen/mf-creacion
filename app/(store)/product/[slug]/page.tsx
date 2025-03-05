@@ -1,9 +1,12 @@
 import AddToBasketButton from '@/components/AddToBasketButton'
 import ImageZoom from '@/components/ImageZoom'
-import { Button } from '@/components/ui/button'
 import getProductBySlug from '@/sanity/lib/products/getProductBySlug'
 import { PortableText } from 'next-sanity'
 import { notFound } from 'next/navigation'
+
+
+export const dynamic = "force-static"
+export const revalidate = 60 
 
 async function ProductPage({params} : { params: Promise< { slug : string }>}) {
 
