@@ -37,7 +37,9 @@ export async function createCheckoutSession(
         if (customers.data.length > 0) {
             customerId = customers.data[0].id
         }
-        
+         const successUrl = process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : process.env.NEXT_PUBLIC_BASE_URL
+         const cancelUrl = process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : process.env.NEXT_PUBLIC_BASE_URL
+
         const session = await stripe.checkout.sessions.create({
             customer_creation: customerId ? undefined: "always",
             customer_email: customerId ? metadata.customerEmail: undefined,
@@ -45,8 +47,8 @@ export async function createCheckoutSession(
             allow_promotion_codes: true,
             // payment_method_types: ["card"],
             mode: "payment",
-            success_url: `${process.env.VERCEL_URL && `https://${process.env.VERCEL_URL }` || process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}&orderNumber=${metadata.orderNumber}`,
-            cancel_url: `${process.env.VERCEL_URL && `https://${process.env.VERCEL_URL }`|| process.env.NEXT_PUBLIC_BASE_URL}/basket`,
+            success_url: `${successUrl}/success?session_id={CHECKOUT_SESSION_ID}&orderNumber=${metadata.orderNumber}`,
+            cancel_url: `${cancelUrl}/basket`,
             line_items: items.map((item)=>({
                 price_data: {
                     currency: "EUR",
