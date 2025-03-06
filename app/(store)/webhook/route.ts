@@ -67,7 +67,6 @@ async function createOrderInSanity( session: Stripe.Checkout.Session ) {
         currency,
         metadata,
         payment_intent,
-        customer,
         total_details
     } = session;
 
