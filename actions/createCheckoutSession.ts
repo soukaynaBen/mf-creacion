@@ -37,8 +37,8 @@ export async function createCheckoutSession(
         if (customers.data.length > 0) {
             customerId = customers.data[0].id
         }
-         const successUrl = process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : process.env.NEXT_PUBLIC_BASE_URL
-         const cancelUrl = process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : process.env.NEXT_PUBLIC_BASE_URL
+         const successUrl = process.env.NODE_ENV === "production" ? "https://mf-creacion.vercel.app" : process.env.NEXT_PUBLIC_BASE_URL
+         const cancelUrl = process.env.NODE_ENV === "production" ? "https://mf-creacion.vercel.app" : process.env.NEXT_PUBLIC_BASE_URL
 
         const session = await stripe.checkout.sessions.create({
             customer_creation: customerId ? undefined: "always",
